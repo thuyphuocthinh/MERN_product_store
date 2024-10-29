@@ -29,7 +29,7 @@ export const getProductById = async (req, res) => {
         message: "Invalid product id",
       });
     }
-    const product = await Product.findOne({ id: id }).lean();
+    const product = await Product.findById(id).lean();
     return res.status(200).json({
       success: true,
       message: product,
@@ -102,7 +102,7 @@ export const deleteProduct = async (req, res) => {
     const result = await Product.findByIdAndDelete(id);
     return res.status(200).json({
       success: true,
-      message: result
+      message: result,
     });
   } catch (error) {
     console.error(">>> Error in getting product: ", error.message);
